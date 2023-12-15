@@ -73,7 +73,8 @@ export function createExpressRouter(classes: AnyClass[]): express.Handler {
             }
 
             try {
-                const response = await instance[method](req);
+                const response = await instance[method](...(req.body.params || [])
+);
 
                 // Express handles the status code, so you can set it directly on the response object.
                 if (!response.statusCode) {
